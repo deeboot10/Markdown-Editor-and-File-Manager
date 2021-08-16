@@ -1,4 +1,4 @@
-import lodash, { debounce } from 'lodash'
+import { debounce } from 'lodash'
 import { useCallback } from 'react';
 
 const TextInput = props => {
@@ -6,7 +6,7 @@ const TextInput = props => {
   const call = useCallback(
     debounce(() => {
       if (document.querySelector('.checkbox').checked) {
-        document.querySelector('button.save').click()
+        document.querySelector('.save-container button').click()
       }
     }, 1000),
     []

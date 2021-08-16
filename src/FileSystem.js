@@ -3,6 +3,7 @@ import AddNewFileButton from './AddNewFileButton'
 import { useSelector } from "react-redux"
 import AddNewFolderButton from './AddNewFolderButton'
 import FolderItem from "./FolderItem"
+import file from "./initial-file"
 
 const FileSystem = ({text}) => {
   
@@ -17,7 +18,7 @@ const FileSystem = ({text}) => {
     ])
   }
   if (!arrayOfKeys.length) {
-    localStorage.setItem('default', text);
+    localStorage.setItem('default', file);
   }
   
   

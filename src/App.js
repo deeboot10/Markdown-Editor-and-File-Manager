@@ -3,7 +3,7 @@ import FileSystem from './FileSystem.js';
 import TextOutput from "./TextOutput";
 import TextInput from "./TextInput";
 import BottomBar from './BottomBar'
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import './index.css'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -51,9 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <Suspense>
-        <Menu save={saveHandler} toggle={toggleFileSystemhandler} text={text} active={activeFile}/>
-      </Suspense>
+      <Menu save={saveHandler} toggle={toggleFileSystemhandler} text={text} active={activeFile}/>
       <div className="main-container">
         {fileSystemIsVisible ? <FileSystem text={text}/> : null}
         <TextInput handleText={textHandler}/>
