@@ -3,7 +3,7 @@ import AddNewFileButton from './AddNewFileButton'
 import { useSelector } from "react-redux"
 import AddNewFolderButton from './AddNewFolderButton'
 import FolderItem from "./FolderItem"
-import file from "./initial-file"
+import file from "../initialFiles/initial-file"
 
 const FileSystem = ({text}) => {
   

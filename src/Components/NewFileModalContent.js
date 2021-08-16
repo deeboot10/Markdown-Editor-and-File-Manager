@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import { refreshActions } from './store/Refresh'
+import { refreshActions } from '../store/Refresh'
 
 const NewFileModalContent = (props) => {
 

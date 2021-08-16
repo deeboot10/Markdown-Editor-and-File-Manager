@@ -1,8 +1,8 @@
-import Menu from './Menu.js'
-import FileSystem from './FileSystem.js';
-import TextOutput from "./TextOutput";
-import TextInput from "./TextInput";
-import BottomBar from './BottomBar'
+import Menu from './Components/Menu.js'
+import FileSystem from './Components/FileSystem.js';
+import TextInput from './Components/TextInput'
+import TextOutput from './Components/TextOutput'
+import BottomBar from './Components/BottomBar'
 import { useState } from "react";
 import './index.css'
 import { useSelector } from 'react-redux';
@@ -45,8 +45,8 @@ function App() {
     setText(text)
   }
 
-  let words = text.split(/\s+/).filter(char => /[a-zA-Z]/.test(char)).length;
-  let lines = text.split(/\r\n|\r|\n/).length
+  const words = text.split(/\s+/).filter(char => /[a-zA-Z]/.test(char)).length;
+  const lines = text.split(/\r\n|\r|\n/).length
 
 
   return (
