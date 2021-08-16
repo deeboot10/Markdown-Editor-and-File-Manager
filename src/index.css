@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Georama&display=swap');
-
 body{
   margin: 0;
   background-color: #fafafa;
   overflow-y: hidden;
-  font-family: 'Georama', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 *{
   box-sizing: border-box;
@@ -96,7 +94,7 @@ blockquote p{
 .bottom-bar{
   width: 100%;
   height: 20px;
-  background-color: rgb(57, 103, 255);
+  background-color: #4456B5;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -123,7 +121,7 @@ blockquote p{
 }
 .fileitem-container p{
   margin: 0;
-  color: rgb(57, 103, 255);
+  color: #4456B5;
   text-decoration: underline;
 }
 .fileitem-container p:hover{
@@ -137,7 +135,7 @@ blockquote p{
   margin: 0 2px;
 }
 .active{
-  background-color: rgb(77, 133, 255);
+  background-color: #4456B5;
 }
 .active p{
   color: white;
@@ -151,16 +149,6 @@ blockquote p{
 .fileitem-svg-container{
   display: flex;
   align-items: center;
-}
-.add-new-file-button{
-  background-color: rgb(57, 103, 255);
-  color: white;
-  border: none;
-  padding: 10px 0;
-}
-.add-new-file-button:hover{
-  cursor: pointer;
-  background-color: rgb(77, 133, 255);
 }
 .newfile-modal, .edit-modal{
   width: 100vw;
@@ -192,25 +180,25 @@ blockquote p{
   margin: 0 10px;
 }
 .newfile-modal-container button, .edit-modal-container button {
-  background-color: rgb(57, 103, 255);
+  background-color: #4456B5;
   border-radius: 5px;
   color: white;
   border: none;
   padding: 5px 20px;
 }
 .newfile-modal-container button:hover, .edit-modal-container button:hover {
-  background-color: rgb(77, 133, 255);
+  background-color: #597dcc;
   cursor: pointer;
 }
 .save{
-  background-color: rgb(57, 103, 255);
+  background-color: #4456B5;
   border-radius: 5px;
   color: white;
   border: none;
   padding: 5px 20px;
 }
 .save:hover{
-  background-color: rgb(77, 133, 255);
+  background-color: #597dcc;
   cursor: pointer;
 }
 .saved{
@@ -232,15 +220,14 @@ blockquote p{
 .save-container label{
   color: white;
 }
-.add-new-folder-button{
-  background-color: rgb(104, 177, 56);
-  color: white;
-  border: none;
-  padding: 10px 0;
+.addnewbuttons-container{
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
 }
-.add-new-folder-button:hover{
-  cursor: pointer;
-  background-color: rgb(161, 209, 83);
+.addnewbuttons-container button:first-child{
+  margin-right: 10px;
 }
 
 

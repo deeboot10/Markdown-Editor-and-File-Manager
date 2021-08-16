@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import { refreshActions } from '../store/Refresh'
+import { refreshActions } from '../store/ReduxStateSlices'
+import { Button } from '@material-ui/core';
+import { Input } from '@material-ui/core';
 
 const NewFileModalContent = (props) => {
 
@@ -8,7 +10,7 @@ const NewFileModalContent = (props) => {
 
   const checkIsEnter = e => {
     if (e.keyCode === 13) {
-      e.target.parentElement.querySelector("button").click();
+      e.target.parentElement.parentElement.querySelector("button").click();
     }
   }
 
@@ -35,8 +37,8 @@ const NewFileModalContent = (props) => {
   
   return <div className='newfile-modal-container'>
     <label>Name of file:</label>
-    <input onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
-    <button onClick={addNewFileHandler}>Add</button>
+    <Input onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
+    <Button color='primary' variant='contained' size='small' onClick={addNewFileHandler}>Add</Button>
   </div>
 }
 

@@ -1,5 +1,6 @@
 import { useState, Fragment } from "react"
 import NewFileModal from './NewFileModal'
+import { Button } from "@material-ui/core"
 
 const AddNewFolderButton = () => {
 
@@ -13,11 +14,11 @@ const AddNewFolderButton = () => {
   }
 
   return <Fragment>
-    <button className='add-new-folder-button' onClick={openModalHandler}>
+    <Button size='small' disableElevation className='addnewbutton' variant='outlined' color='secondary' onClick={openModalHandler}>
       <b>
         Add New Folder
       </b>
-    </button>
+    </Button>
     {newFileModal ? <NewFileModal folder={true} close={closeModalHandler}/> : null}
   </Fragment>
 }

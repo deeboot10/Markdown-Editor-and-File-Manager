@@ -40,8 +40,10 @@ const FileSystem = ({text}) => {
   })
 
   return <div className='filesystem'>
-    <AddNewFileButton />
-    <AddNewFolderButton />
+    <div className="addnewbuttons-container">
+      <AddNewFileButton />
+      <AddNewFolderButton />
+    </div>
     <hr />
     <div>
       {allFolderItems}

@@ -1,5 +1,6 @@
 import { useState, Fragment } from "react"
 import NewFileModal from './NewFileModal'
+import { Button } from "@material-ui/core"
 
 const AddNewFileButton = () => {
 
@@ -14,11 +15,11 @@ const AddNewFileButton = () => {
   }
 
   return <Fragment>
-    <button className='add-new-file-button' onClick={openModalHandler}>
+    <Button size='small' disableElevation className='addnewbutton' variant="outlined" color='primary' onClick={openModalHandler}>
       <b>
         Add New File
       </b>
-    </button>
+    </Button>
     {newFileModal ? <NewFileModal close={closeModalHandler}/> : null}
   </Fragment>
 }

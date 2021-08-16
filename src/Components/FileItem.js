@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fragment } from "react"
 import { useDispatch } from "react-redux";
-import { activeFileActions, refreshActions } from '../store/Refresh'
+import { activeFileActions, refreshActions } from '../store/ReduxStateSlices'
 import EditModal from './EditModal'
 
 const FileItem = ({ name, className }) => {

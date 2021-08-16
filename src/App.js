@@ -7,7 +7,7 @@ import { useState } from "react";
 import './index.css'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { refreshActions} from './store/Refresh'
+import { refreshActions} from './store/ReduxStateSlices'
 import {useDispatch} from 'react-redux'
 
 function App() {

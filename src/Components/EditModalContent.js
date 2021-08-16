@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { activeFileActions, refreshActions } from '../store/Refresh'
+import { activeFileActions, refreshActions } from '../store/ReduxStateSlices'
+import { Button } from '@material-ui/core';
+import { Input } from '@material-ui/core';
 
 const EditModalContent = (props) => {
 
@@ -9,8 +11,7 @@ const EditModalContent = (props) => {
 
   const checkIsEnter = e => {
     if (e.keyCode === 13) {
-      e.target.parentElement.querySelector('button').click();
-      console.log('why')
+      e.target.parentElement.parentElement.querySelector('button').click();
     }
   }
 
@@ -34,8 +35,8 @@ const EditModalContent = (props) => {
   
   return <div className='edit-modal-container'>
     <label>Set new name:</label>
-    <input onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
-    <button onClick={editCommitHandler}>Add</button>
+    <Input onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
+    <Button color='primary' variant='contained' size='small' onClick={editCommitHandler}>Add</Button>
   </div>
 }
 
