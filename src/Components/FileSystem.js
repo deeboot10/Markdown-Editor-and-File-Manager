@@ -1,8 +1,8 @@
-import FileItem from "./FileItem"
-import AddNewFileButton from './AddNewFileButton'
+import FileItem from "./FileSystemComponents/FileItem"
+import AddNewFileButton from './FileSystemComponents/AddNewFileButton'
 import { useSelector } from "react-redux"
-import AddNewFolderButton from './AddNewFolderButton'
-import FolderItem from "./FolderItem"
+import AddNewFolderButton from './FileSystemComponents/AddNewFolderButton'
+import FolderItem from "./FileSystemComponents/FolderItem"
 import file from "../initialFiles/initial-file"
 
 const FileSystem = ({text}) => {

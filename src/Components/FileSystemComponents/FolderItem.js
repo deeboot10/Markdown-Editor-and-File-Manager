@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { refreshActions } from '../store/ReduxStateSlices'
+import { refreshActions } from '../../store/ReduxStateSlices'
 
 const FolderItem = props => {
 

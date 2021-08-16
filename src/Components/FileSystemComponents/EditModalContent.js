@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { activeFileActions, refreshActions } from '../store/ReduxStateSlices'
+import { activeFileActions, refreshActions } from '../../store/ReduxStateSlices'
 import { Button } from '@material-ui/core';
 import { Input } from '@material-ui/core';
 
