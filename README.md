@@ -9,4 +9,4 @@ npm install
 npm start
 ```
 ### Live Demo
-Live Demo will be available after finishing the whole app
+[Click here](https://gracious-bartik-436c22.netlify.app/)
