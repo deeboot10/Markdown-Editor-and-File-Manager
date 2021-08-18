@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { activeFileActions, refreshActions } from '../../store/ReduxStateSlices'
 import { Button } from '@material-ui/core';
 import { Input } from '@material-ui/core';
+import { useRef } from 'react';
 
 const EditModalContent = (props) => {
 
   const dispatch = useDispatch();
   const activeFile = useSelector(state => state.activeFile.activeFile)
+  const inputRef = useRef();
 
   const checkIsEnter = e => {
     if (e.keyCode === 13) {
@@ -21,13 +23,21 @@ const EditModalContent = (props) => {
   }, []);
 
   const editCommitHandler = e => {
-    let name = e.target.parentElement.querySelector('input').value
-    if (props.name === activeFile) {
-      dispatch(activeFileActions.changeActiveFile({name: name}))
-    }
-    let content = localStorage.getItem(props.oldName);
-    localStorage.removeItem(props.oldName)
-    localStorage.setItem(name, content)
+    const newName = inputRef.current.value;
+    console.log(props.name, activeFile)
+    let root = JSON.parse(localStorage.getItem('root'));
+    const folderKeysArr = Object.keys(root);
+    let currentFolder;
+    folderKeysArr.forEach(key => {
+      if (props.oldName in root[key]) {
+        currentFolder = key;
+      }
+    })
+    let content = root[currentFolder][props.oldName];
+    delete root[currentFolder][props.oldName]
+    root[currentFolder][newName] = content
+    localStorage.setItem('root', JSON.stringify(root))
+    dispatch(activeFileActions.changeActiveFile({name: newName}))
     dispatch(refreshActions.toggleRefresh())
     document.querySelector('textarea').focus();
     props.close()
@@ -35,8 +45,8 @@ const EditModalContent = (props) => {
   
   return <div className='edit-modal-container'>
     <label>Set new name:</label>
-    <Input onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
-    <Button color='primary' variant='contained' size='small' onClick={editCommitHandler}>Add</Button>
+    <Input inputRef={inputRef} style={{margin: '0 10px'}} onKeyUp={checkIsEnter} type="text" placeholder="enter name ..."/>
+    <Button color='primary' variant='contained' disableElevation onClick={editCommitHandler}>rename</Button>
   </div>
 }
 

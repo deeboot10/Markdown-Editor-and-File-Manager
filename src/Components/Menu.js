@@ -5,7 +5,7 @@ import { FormatBold, FormatItalic, FormatQuote, Code, Link, FolderOpen } from "@
 import Header1 from "../svg/Header1";
 import Header2 from "../svg/Header2";
 import Header3 from "../svg/Header3";
-
+import { Button } from "@material-ui/core";
 
 const Menu = (props) => {
   
@@ -85,8 +85,7 @@ const Menu = (props) => {
     props.save();
   }
 
-
-  const activeFile = props.active;
+  const isSaved = useSelector(state => state.activeFile.isSaved)
 
   return <div className="menu">
     <div className='submenu'>
@@ -121,7 +120,7 @@ const Menu = (props) => {
     <div className='save-container'>
       <label>Autosave:</label>
       <Switch onChange={autosaveChangeHandler} color='primary'/>
-      <button onClick={props.save} className={props.text === localStorage.getItem(activeFile) ? 'saved' : 'save'}>{props.text === localStorage.getItem(activeFile) ? 'Saved' : 'Save'}</button>
+      <Button style={isSaved ? { color: 'white', border: '1px solid white' } : {}} disabled={isSaved} onClick={props.save} variant='contained' size='small' color='primary'>{isSaved ? 'saved' : 'save'}</Button>
     </div>
   </div>
 }

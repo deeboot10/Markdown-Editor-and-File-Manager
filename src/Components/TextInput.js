@@ -1,11 +1,13 @@
 import { debounce } from 'lodash'
 import { useCallback } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { activeFileActions } from '../store/ReduxStateSlices';
 
 const TextInput = props => {
 
+  const isSaved = useSelector(state => state.activeFile.isSaved);
   const autoSaveIsOn = useSelector(state => state.activeFile.autoSaveIsOn)
+  const dispatch = useDispatch()
 
   const call = useCallback(
     debounce(() => {
@@ -17,6 +19,9 @@ const TextInput = props => {
 
   const provideText = e => {
     props.handleText(e.target.value);
+    if (isSaved) {
+      dispatch(activeFileActions.changeIsSaved({bool: false}));
+    }
     if (autoSaveIsOn) {
       call()
     }

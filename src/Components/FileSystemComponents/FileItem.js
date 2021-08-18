@@ -12,13 +12,24 @@ const FileItem = ({ name, className }) => {
   const [editModalIsVisible, setEditModalIsVisible] = useState(false);
 
   const deleteFileHandler = () => {
-    localStorage.removeItem(name);
-    let arrayOfKeys = Object.keys(localStorage);
-    arrayOfKeys = arrayOfKeys.filter(name => 
-      name !== 'foldersContainer'  
-    )
-    document.querySelector('textarea').value = localStorage.getItem(arrayOfKeys[0])
-    dispatch(activeFileActions.changeActiveFile({ name: arrayOfKeys[0] }));
+
+    let root = JSON.parse(localStorage.getItem('root'));
+    const folderKeys = Object.keys(root);
+    let currentFolder;
+    folderKeys.forEach(key => {
+      if (name in root[key]) {
+        currentFolder = key;
+      }
+    })
+
+    if (Object.keys(root[currentFolder]).length > 1) {
+      delete root[currentFolder][name];
+      localStorage.setItem('root', JSON.stringify(root));
+      dispatch(activeFileActions.changeActiveFile({ name: Object.keys(root[currentFolder])[0] }));
+      document.querySelector('textarea').value = root[currentFolder][Object.keys(root[currentFolder])[0]];
+    } else {
+      alert('you must have at least one file')
+    }
     dispatch(refreshActions.toggleRefresh())
   }
 
@@ -31,9 +42,20 @@ const FileItem = ({ name, className }) => {
   }
 
   const changeFileHandler = () => {
-    (() => document.querySelector('textarea'))().value = localStorage.getItem(name);
-    dispatch(refreshActions.toggleRefresh())
+    (() => {
+      const root = JSON.parse(localStorage.getItem('root'));
+      let activeFolder;
+      const folderKeys = Object.keys(root);
+      folderKeys.forEach(key => {
+        if (name in root[key]) {
+          activeFolder = key;
+        }
+      })
+      document.querySelector('textarea').value = root[activeFolder][name]; 
+    })()
     dispatch(activeFileActions.changeActiveFile({ name: name }));
+    dispatch(activeFileActions.changeIsSaved({ bool: true }));
+    dispatch(refreshActions.toggleRefresh())
   }
 
   return <Fragment>

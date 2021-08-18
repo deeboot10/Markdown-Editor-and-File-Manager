@@ -7,7 +7,7 @@ import { useState } from "react";
 import './index.css'
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { refreshActions} from './store/ReduxStateSlices'
+import { activeFileActions, refreshActions} from './store/ReduxStateSlices'
 import {useDispatch} from 'react-redux'
 
 function App() {
@@ -16,10 +16,11 @@ function App() {
   const [fileSystemIsVisible, setFileSystemIsVisible] = useState(true)
   const refresh = useSelector(state => state.refresh.refresh);
   const activeFile = useSelector(state => state.activeFile.activeFile);
-  
+  const activeFolder = useSelector(state => state.activeFile.activeFolder)
+
 
   useEffect(() => {
-    (() => document.querySelector('textarea'))().value = localStorage.getItem(activeFile);
+    (() => document.querySelector('textarea'))().value = JSON.parse(localStorage.getItem('root'))[activeFolder][activeFile];
     dispatch(refreshActions.toggleRefresh())
   }, [])
 
@@ -37,7 +38,10 @@ function App() {
   
   const dispatch = useDispatch();
   const saveHandler = () => {
-    localStorage.setItem(activeFile, text)
+    let root = JSON.parse(localStorage.getItem('root'))
+    root[activeFolder][activeFile] = text;
+    localStorage.setItem('root', JSON.stringify(root))
+    dispatch(activeFileActions.changeIsSaved({bool: true}))
     dispatch(refreshActions.toggleRefresh())
   }
 

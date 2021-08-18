@@ -3,40 +3,24 @@ import AddNewFileButton from './FileSystemComponents/AddNewFileButton'
 import { useSelector } from "react-redux"
 import AddNewFolderButton from './FileSystemComponents/AddNewFolderButton'
 import FolderItem from "./FileSystemComponents/FolderItem"
-import file from "../initialFiles/initial-file"
 
-const FileSystem = ({text}) => {
-  
-  let arrayOfKeys = Object.keys(localStorage);
-  arrayOfKeys = arrayOfKeys.filter(key => key !== 'foldersContainer')
-  let allFileItems = [];
-  let allFolderItems = [];
-  
-  if (!localStorage.getItem('foldersContainer')) {
-    localStorage.setItem('foldersContainer', [
-      'defaultFolder'
-    ])
-  }
-  if (!arrayOfKeys.length) {
-    localStorage.setItem('default', file);
-  }
+const FileSystem = () => {
   
   
   const activeFile = useSelector(state => state.activeFile.activeFile);
-  
+
+  const rootObject = JSON.parse(localStorage.getItem('root'))
+  const arrayOfFolderKeys = Object.keys(rootObject)
 
 
-  const arrayOfFolders = localStorage.getItem('foldersContainer').split(',')
-
-
-  arrayOfFolders.forEach(folderName => {
-    allFolderItems.push(
-      <FolderItem key={folderName} name={ folderName }/>
-    )
-  })
-
-  arrayOfKeys.forEach( key => {
-    allFileItems.push(<FileItem name={key} key={key} className={key === activeFile ? 'active' : ''}></FileItem>)
+  let arrayOfFolders = [];
+  arrayOfFolderKeys.forEach(folderName => {
+    let arrayOfFiles = [];
+    const arrayOfFileKeys = Object.keys(rootObject[folderName])
+    arrayOfFileKeys.forEach(fileName => {
+      arrayOfFiles.push(<FileItem name={fileName} key={fileName} className={fileName === activeFile ? 'active' : ''}></FileItem>)
+    })
+    arrayOfFolders.push(<FolderItem key={folderName} name={ folderName }>{arrayOfFiles}</FolderItem>)
   })
 
   return <div className='filesystem'>
@@ -46,8 +30,7 @@ const FileSystem = ({text}) => {
     </div>
     <hr />
     <div>
-      {allFolderItems}
-      {allFileItems}
+      {arrayOfFolders}
     </div>
   </div>
 }
