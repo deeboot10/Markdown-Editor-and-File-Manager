@@ -310,13 +310,15 @@ h1, h2 {
 h2{
   padding-bottom: 10px;
 }
-.hidden{
+.hide {
   display: none;
 }
 
-
 @media screen and (max-width: 900px){
-   .svg-container{
+  .svg-container{
+    display: none;
+  }
+  .hidden{
     display: none;
   }
   .svg-container:first-child{

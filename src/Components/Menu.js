@@ -6,7 +6,7 @@ import Header1 from "../svg/Header1";
 import Header2 from "../svg/Header2";
 import Header3 from "../svg/Header3";
 import { Button } from "@material-ui/core";
-
+import { useRef } from "react";
 const Menu = (props) => {
 
   const getAreaField = () => {
@@ -76,11 +76,23 @@ const Menu = (props) => {
     area.selectionStart = lastPlaceIndex - 15;
     area.selectionEnd = lastPlaceIndex - 6;
   }
-  const toggleVisibility = () => {
-    document.querySelector('.input-container').classList.toggle('hidden')
-    document.querySelector('.output-container').classList.toggle('hidden')
-  }
 
+
+
+  const toggleVisibility = () => {
+      
+    const inputCont = document.querySelector('.input-container')
+    const outputCont = document.querySelector('.output-container')
+
+    if (inputCont.classList.contains('hidden')) {
+      inputCont.classList.remove('hidden');
+      outputCont.classList.add('hidden')
+    } else {
+      inputCont.classList.add('hidden');
+      outputCont.classList.remove('hidden')
+    }
+    
+  }
   // autosave toggle
   const dispatch = useDispatch();
   const autosaveChangeHandler = () => {
@@ -95,7 +107,7 @@ const Menu = (props) => {
       <div onClick={props.toggle} className='svg-container'>
         <FolderOpen fontSize='large'/>
       </div>
-      <div onClick={toggleVisibility} className='svg-container hidden'>
+      <div onClick={toggleVisibility} className='svg-container hide'>
         <Visibility />
       </div>
       <div onClick={boldHandler} className="svg-container">
