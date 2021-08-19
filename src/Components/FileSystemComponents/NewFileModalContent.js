@@ -9,6 +9,7 @@ import { useRef } from 'react';
 
 const NewFileModalContent = (props) => {
   const activeFolder = useSelector(state => state.activeFile.activeFolder)
+  const activeFile = useSelector(state => state.activeFile.activeFile)
   const dispatch = useDispatch();
   const inputRef = useRef();
 

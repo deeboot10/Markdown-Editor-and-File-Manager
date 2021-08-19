@@ -6,13 +6,10 @@ import FolderItem from "./FileSystemComponents/FolderItem"
 
 const FileSystem = () => {
   
-  
   const activeFile = useSelector(state => state.activeFile.activeFile);
-
   const rootObject = JSON.parse(localStorage.getItem('root'))
   const arrayOfFolderKeys = Object.keys(rootObject)
-
-
+  
   let arrayOfFolders = [];
   arrayOfFolderKeys.forEach(folderName => {
     let arrayOfFiles = [];
@@ -20,7 +17,7 @@ const FileSystem = () => {
     arrayOfFileKeys.forEach(fileName => {
       arrayOfFiles.push(<FileItem name={fileName} key={fileName} className={fileName === activeFile ? 'active' : ''}></FileItem>)
     })
-    arrayOfFolders.push(<FolderItem key={folderName} name={ folderName }>{arrayOfFiles}</FolderItem>)
+    arrayOfFolders.push(<FolderItem key={folderName} name={folderName}>{arrayOfFiles}</FolderItem>)
   })
 
   return <div className='filesystem'>

@@ -244,6 +244,10 @@ p.subfile{
   opacity: 0.7;
   padding: 0 5px 10px 5px;
 }
+.folder-item-menu span{
+  display: flex;
+  align-items: center;
+}
 .folder-item svg{
   margin-right: 10px;
 }
@@ -254,6 +258,19 @@ p.subfile{
   cursor: pointer;
   color: white;
   background-color: #f44336;
+}
+.landing-area {
+  border: 2px dashed gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px;
+  padding: 5px 0;
+  border-radius: 10px;
+  color: gray;
+}
+.green-bg{
+  background-color: rgba(32, 204, 32, 0.52);
 }
 
 
@@ -292,4 +309,42 @@ h1, h2 {
 }
 h2{
   padding-bottom: 10px;
+}
+.hidden{
+  display: none;
+}
+
+
+@media screen and (max-width: 900px){
+   .svg-container{
+    display: none;
+  }
+  .svg-container:first-child{
+    display: flex;
+    margin-right: 10px;
+  }
+  .svg-container:nth-child(2){
+    display: flex;
+  }
+
+  .main-container{
+    flex-direction: column;
+  }
+  .input-container, .output-container{
+    width: 100vw;
+  }
+  .landing-area{
+    display: none;
+  }
+  .filesystem{
+    font-size: 13px;
+  }
+  .newfile-modal-container, .edit-modal-container{
+    flex-direction: column;    
+    justify-content: space-around;
+    margin-top: 100px;
+  }
+  .newfile-modal-container button, .edit-modal-container button{
+    margin-top: 10px;
+  }
 }

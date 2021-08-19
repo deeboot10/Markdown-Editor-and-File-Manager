@@ -73,14 +73,33 @@ const activeFileSlice = createSlice({
 });
 
 
+const isDraggedInitialValue = {
+  isDragged: false
+}
+const isDraggedSlice = createSlice({
+  name: 'isDragged',
+  initialState: isDraggedInitialValue,
+  reducers: {
+    isDraggedTrue(state) {
+      state.isDragged = true
+    },
+    isDraggedFalse(state) {
+      state.isDragged = false
+    }
+  }
+});
+
+
 const store = configureStore({
   reducer: {
     refresh: refreshSlice.reducer,
-    activeFile: activeFileSlice.reducer
+    activeFile: activeFileSlice.reducer,
+    isDragged: isDraggedSlice.reducer
   }
 })
 
 export const refreshActions = refreshSlice.actions;
 export const activeFileActions = activeFileSlice.actions;
+export const isDraggedActions = isDraggedSlice.actions
 
 export default store;

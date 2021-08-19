@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fragment } from "react"
 import { useDispatch } from "react-redux";
-import { activeFileActions, refreshActions } from '../../store/ReduxStateSlices'
+import { activeFileActions, refreshActions, isDraggedActions } from '../../store/ReduxStateSlices'
 import EditModal from './EditModal'
 import EditSvg from "../../svg/EditSvg";
 import DeleteFileSvg from "../../svg/DeleteFileSvg";
@@ -58,9 +58,18 @@ const FileItem = ({ name, className }) => {
     dispatch(refreshActions.toggleRefresh())
   }
 
+  const dragStart = (e) => {
+    e.dataTransfer.setData('Text', e.target.id);
+    dispatch(isDraggedActions.isDraggedTrue());
+  }
+
+  const dragEnd = () => {
+    dispatch(isDraggedActions.isDraggedFalse())
+  }
+
   return <Fragment>
     <div className={className + ' fileitem-container'}>
-      <p onClick={changeFileHandler}>{name}</p>
+      <p draggable={true} onDragStart={dragStart} onDragEnd={dragEnd} onClick={changeFileHandler} id={name}>{name}</p>
       <div className='fileitem-svg-container'>
         <EditSvg onClick={showEditModal} />
         <DeleteFileSvg onClick={deleteFileHandler}/>

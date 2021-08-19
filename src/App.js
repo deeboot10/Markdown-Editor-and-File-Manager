@@ -18,7 +18,7 @@ function App() {
   const activeFile = useSelector(state => state.activeFile.activeFile);
   const activeFolder = useSelector(state => state.activeFile.activeFolder)
 
-
+  
   useEffect(() => {
     (() => document.querySelector('textarea'))().value = JSON.parse(localStorage.getItem('root'))[activeFolder][activeFile];
     dispatch(refreshActions.toggleRefresh())

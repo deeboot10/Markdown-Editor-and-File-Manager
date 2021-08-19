@@ -1,14 +1,14 @@
 import { Switch } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { activeFileActions } from "../store/ReduxStateSlices";
-import { FormatBold, FormatItalic, FormatQuote, Code, Link, FolderOpen } from "@material-ui/icons";
+import { FormatBold, FormatItalic, FormatQuote, Code, Link, FolderOpen, Visibility } from "@material-ui/icons";
 import Header1 from "../svg/Header1";
 import Header2 from "../svg/Header2";
 import Header3 from "../svg/Header3";
 import { Button } from "@material-ui/core";
 
 const Menu = (props) => {
-  
+
   const getAreaField = () => {
     return document.querySelector('textarea');
   }
@@ -76,7 +76,10 @@ const Menu = (props) => {
     area.selectionStart = lastPlaceIndex - 15;
     area.selectionEnd = lastPlaceIndex - 6;
   }
-
+  const toggleVisibility = () => {
+    document.querySelector('.input-container').classList.toggle('hidden')
+    document.querySelector('.output-container').classList.toggle('hidden')
+  }
 
   // autosave toggle
   const dispatch = useDispatch();
@@ -91,6 +94,9 @@ const Menu = (props) => {
     <div className='submenu'>
       <div onClick={props.toggle} className='svg-container'>
         <FolderOpen fontSize='large'/>
+      </div>
+      <div onClick={toggleVisibility} className='svg-container hidden'>
+        <Visibility />
       </div>
       <div onClick={boldHandler} className="svg-container">
         <FormatBold />
